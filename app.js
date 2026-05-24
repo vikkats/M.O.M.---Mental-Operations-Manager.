@@ -643,6 +643,15 @@ function setActiveTab(tabId) {
   document.querySelector("#main")?.focus({ preventScroll: true });
 }
 
+function getNamedField(form, name) {
+  return form.elements.namedItem(name);
+}
+
+function setFormField(form, name, value) {
+  const field = getNamedField(form, name);
+  if (field) field.value = value ?? "";
+}
+
 function handleClick(event) {
   const tabButton = event.target.closest("[data-tab]");
   if (tabButton) {
@@ -746,13 +755,15 @@ function saveChild(form) {
   };
 
   const existingIndex = state.children.findIndex((item) => item.id === child.id);
+  const wasSelected = child.id === state.selectedChildId;
+
   if (existingIndex >= 0) {
     state.children[existingIndex] = child;
   } else {
     state.children.push(child);
   }
 
-  state.selectedChildId = child.id;
+  state.selectedChildId = wasSelected || !state.selectedChildId ? child.id : state.selectedChildId;
   resetConfirmations();
   saveState();
   render();
@@ -764,12 +775,12 @@ function fillChildForm(id) {
   const form = document.querySelector("#child-form");
   if (!child || !form) return;
 
-  form.id.value = child.id;
-  form.name.value = child.name;
-  form.weightKg.value = child.weightKg;
-  form.dateOfBirth.value = child.dateOfBirth || "";
-  form.color.value = child.color || "#D97059";
-  form.notes.value = child.notes || "";
+  setFormField(form, "id", child.id);
+  setFormField(form, "name", child.name);
+  setFormField(form, "weightKg", child.weightKg);
+  setFormField(form, "dateOfBirth", child.dateOfBirth || "");
+  setFormField(form, "color", child.color || "#D97059");
+  setFormField(form, "notes", child.notes || "");
   document.querySelector("#child-form-title").textContent = "Edit child profile";
   form.scrollIntoView({ behavior: "smooth", block: "center" });
 }
@@ -778,8 +789,8 @@ function clearChildForm() {
   const form = document.querySelector("#child-form");
   if (!form) return;
   form.reset();
-  form.id.value = "";
-  form.color.value = "#D97059";
+  setFormField(form, "id", "");
+  setFormField(form, "color", "#D97059");
   document.querySelector("#child-form-title").textContent = "Add child profile";
 }
 
@@ -832,13 +843,15 @@ function saveMedication(form) {
   };
 
   const existingIndex = state.medications.findIndex((item) => item.id === medication.id);
+  const wasSelected = medication.id === state.selectedMedicationId;
+
   if (existingIndex >= 0) {
     state.medications[existingIndex] = medication;
   } else {
     state.medications.push(medication);
   }
 
-  state.selectedMedicationId = medication.id;
+  state.selectedMedicationId = wasSelected || !state.selectedMedicationId ? medication.id : state.selectedMedicationId;
   resetConfirmations();
   saveState();
   render();
@@ -850,15 +863,15 @@ function fillMedicationForm(id) {
   const form = document.querySelector("#medication-form");
   if (!medication || !form) return;
 
-  form.id.value = medication.id;
-  form.name.value = medication.name;
-  form.dosePerKg.value = medication.dosePerKg;
-  form.doseUnit.value = medication.doseUnit || "units";
-  form.concentration.value = medication.concentration || "";
-  form.volumeUnit.value = medication.volumeUnit || "ml";
-  form.minIntervalHours.value = medication.minIntervalHours || "";
-  form.color.value = medication.color || "#D97059";
-  form.sourceNote.value = medication.sourceNote || "";
+  setFormField(form, "id", medication.id);
+  setFormField(form, "name", medication.name);
+  setFormField(form, "dosePerKg", medication.dosePerKg);
+  setFormField(form, "doseUnit", medication.doseUnit || "units");
+  setFormField(form, "concentration", medication.concentration || "");
+  setFormField(form, "volumeUnit", medication.volumeUnit || "ml");
+  setFormField(form, "minIntervalHours", medication.minIntervalHours || "");
+  setFormField(form, "color", medication.color || "#D97059");
+  setFormField(form, "sourceNote", medication.sourceNote || "");
   document.querySelector("#medication-form-title").textContent = "Edit medication formula";
   form.scrollIntoView({ behavior: "smooth", block: "center" });
 }
@@ -867,10 +880,10 @@ function clearMedicationForm() {
   const form = document.querySelector("#medication-form");
   if (!form) return;
   form.reset();
-  form.id.value = "";
-  form.doseUnit.value = "units";
-  form.volumeUnit.value = "ml";
-  form.color.value = "#D97059";
+  setFormField(form, "id", "");
+  setFormField(form, "doseUnit", "units");
+  setFormField(form, "volumeUnit", "ml");
+  setFormField(form, "color", "#D97059");
   document.querySelector("#medication-form-title").textContent = "Add medication formula";
 }
 
