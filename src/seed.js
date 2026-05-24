@@ -5,6 +5,7 @@ export const tabs = [
   { id: "calculate", label: "Dose & Go" },
   { id: "fever", label: "Fever Log" },
   { id: "appointments", label: "Appointments" },
+  { id: "emergency", label: "Emergency Card" },
   { id: "profiles", label: "Profiles" },
   { id: "medications", label: "Meds" },
   { id: "history", label: "History" },
@@ -19,6 +20,8 @@ export const demoState = {
   feverFilterChildId: "all",
   appointmentFilterChildId: "all",
   appointmentFilterStatus: "all",
+  emergencyFilterChildId: "all",
+  emergencySelectedChildId: "child-demo-mia",
   confirmations: {
     weight: false,
     formula: false,
@@ -115,6 +118,31 @@ export const demoState = {
       followUp: "Update profile notes after visit.",
       note: "Seed appointment showing the prep workflow."
     }
+  ],
+  emergencyCards: [
+    {
+      id: "emergency-demo-mia",
+      childId: "child-demo-mia",
+      childName: "Mia",
+      dateOfBirth: "2021-06-12",
+      weightKg: 18.4,
+      allergies: "Demo allergy note: replace with caregiver-entered verified details.",
+      conditions: "No demo conditions recorded.",
+      currentMeds: "Use Dose & Go logs for recent medication history.",
+      pediatricianName: "Dr. Demo Pediatrician",
+      pediatricianPhone: "+30 210 000 0000",
+      preferredHospital: "Demo Children's Clinic",
+      insuranceProvider: "Demo Insurance",
+      insuranceNumber: "Policy demo-0000",
+      contactOneName: "Parent / Guardian A",
+      contactOneRelation: "Mother",
+      contactOnePhone: "+30 690 000 0000",
+      contactTwoName: "Trusted Contact B",
+      contactTwoRelation: "Grandparent",
+      contactTwoPhone: "+30 690 000 0001",
+      accessNotes: "Demo only. Do not store real sensitive data in a public portfolio demo.",
+      updatedAt: new Date(Date.now() - 1000 * 60 * 30).toISOString()
+    }
   ]
 };
 
@@ -139,13 +167,13 @@ export const futureModules = [
   },
   {
     title: "Emergency Card",
-    status: "Next module",
-    description: "One-tap allergies, doctor details, insurance, and trusted contacts.",
-    locked: true
+    status: "Module active",
+    description: "One-tap allergies, doctor details, insurance, contacts, and copy-ready emergency handoff.",
+    locked: false
   },
   {
     title: "Family Ops",
-    status: "Roadmap",
+    status: "Next module",
     description: "A lightweight handoff board for who needs what today.",
     locked: true
   },
