@@ -1,0 +1,22 @@
+{
+  "name": "mom-mental-operations-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "M.O.M. — Mental Operations Manager. A static Dose & Go MVP for child profile, formula-based demo dose calculation, and local medication history logging.",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "test": "node tests/dose.test.mjs",
+    "check": "node --check app.js && node --check src/dose.js && node --check src/seed.js && npm test"
+  },
+  "keywords": [
+    "ui-ux",
+    "portfolio",
+    "pwa",
+    "caregiver-tools",
+    "local-storage",
+    "dose-and-go"
+  ],
+  "author": "Viktoria Katsouli",
+  "license": "UNLICENSED"
+}

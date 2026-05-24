@@ -1,0 +1,11 @@
+id,screen,priority,frame_size,notes
+S01,Command Center,P0,390x844,"Hero, selected task, system map"
+S02,Dose & Go Calculator,P0,390x844,"Selectors, dose output, confirmation gate"
+S03,Child Profiles,P0,390x844,"Profile cards and add/edit form"
+S04,Medication Formula Library,P0,390x844,"Formula cards, source notes, add/edit form"
+S05,History Timeline,P0,390x844,"Log cards, filter, export"
+S06,Empty States,P0,390x844,"No child, no meds, no history"
+S07,Confirmation States,P0,390x844,"Disabled log, enabled log, toast"
+S08,Case Study In-App,P1,390x844,"UX rationale and tokens"
+S09,Desktop Dashboard,P1,1440x1024,"Responsive portfolio surface"
+S10,Behance Case Study,P1,1400xVariable,"Long-form project presentation"
