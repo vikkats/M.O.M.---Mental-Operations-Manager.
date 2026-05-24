@@ -6,6 +6,7 @@ export const tabs = [
   { id: "fever", label: "Fever Log" },
   { id: "appointments", label: "Appointments" },
   { id: "emergency", label: "Emergency Card" },
+  { id: "family", label: "Family Ops" },
   { id: "profiles", label: "Profiles" },
   { id: "medications", label: "Meds" },
   { id: "history", label: "History" },
@@ -22,6 +23,9 @@ export const demoState = {
   appointmentFilterStatus: "all",
   emergencyFilterChildId: "all",
   emergencySelectedChildId: "child-demo-mia",
+  familyOpsFilterChildId: "all",
+  familyOpsFilterStatus: "open",
+  familyOpsFilterOwner: "all",
   confirmations: {
     weight: false,
     formula: false,
@@ -143,6 +147,38 @@ export const demoState = {
       accessNotes: "Demo only. Do not store real sensitive data in a public portfolio demo.",
       updatedAt: new Date(Date.now() - 1000 * 60 * 30).toISOString()
     }
+  ],
+  familyTasks: [
+    {
+      id: "family-demo-1",
+      childId: "child-demo-mia",
+      childName: "Mia",
+      title: "Pack clinic bag",
+      category: "Health",
+      owner: "Me",
+      status: "today",
+      priority: "high",
+      dueAt: new Date(Date.now() + 1000 * 60 * 60 * 3).toISOString(),
+      checklist: ["Insurance card", "Water bottle", "Fever summary", "Medication log"],
+      note: "Demo task connected to the pediatrician follow-up.",
+      createdAt: new Date(Date.now() - 1000 * 60 * 40).toISOString(),
+      completedAt: ""
+    },
+    {
+      id: "family-demo-2",
+      childId: "family",
+      childName: "Family",
+      title: "Check school form deadline",
+      category: "School",
+      owner: "Partner",
+      status: "waiting",
+      priority: "normal",
+      dueAt: new Date(Date.now() + 1000 * 60 * 60 * 30).toISOString(),
+      checklist: ["Find form", "Confirm deadline", "Add to Appointments if needed"],
+      note: "Shows Family Ops as a shared handoff board, not only health tracking.",
+      createdAt: new Date(Date.now() - 1000 * 60 * 70).toISOString(),
+      completedAt: ""
+    }
   ]
 };
 
@@ -173,13 +209,13 @@ export const futureModules = [
   },
   {
     title: "Family Ops",
-    status: "Next module",
-    description: "A lightweight handoff board for who needs what today.",
-    locked: true
+    status: "Module active",
+    description: "A lightweight handoff board for who needs what today, who owns it, and what is still blocked.",
+    locked: false
   },
   {
     title: "AI Prep Layer",
-    status: "Later",
+    status: "Next module",
     description: "Summarize logs and turn messy notes into doctor-ready questions once safety validation exists.",
     locked: true
   }
