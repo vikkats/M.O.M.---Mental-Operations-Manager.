@@ -4,6 +4,7 @@ export const tabs = [
   { id: "dashboard", label: "Command Center" },
   { id: "calculate", label: "Dose & Go" },
   { id: "fever", label: "Fever Log" },
+  { id: "appointments", label: "Appointments" },
   { id: "profiles", label: "Profiles" },
   { id: "medications", label: "Meds" },
   { id: "history", label: "History" },
@@ -16,6 +17,8 @@ export const demoState = {
   selectedMedicationId: "med-demo-a",
   historyFilterChildId: "all",
   feverFilterChildId: "all",
+  appointmentFilterChildId: "all",
+  appointmentFilterStatus: "all",
   confirmations: {
     weight: false,
     formula: false,
@@ -95,6 +98,23 @@ export const demoState = {
       note: "Demo fever entry to show the symptom timeline.",
       loggedAt: new Date(Date.now() - 1000 * 60 * 90).toISOString()
     }
+  ],
+  appointments: [
+    {
+      id: "appt-demo-1",
+      childId: "child-demo-mia",
+      childName: "Mia",
+      title: "Pediatrician follow-up",
+      type: "Pediatrician",
+      status: "prep",
+      startsAt: new Date(Date.now() + 1000 * 60 * 60 * 27).toISOString(),
+      location: "Demo pediatric clinic",
+      provider: "Dr. Demo",
+      agenda: "Ask about fever pattern and whether symptoms need follow-up.",
+      documents: "Bring fever timeline and medication log export if useful.",
+      followUp: "Update profile notes after visit.",
+      note: "Seed appointment showing the prep workflow."
+    }
   ]
 };
 
@@ -113,13 +133,13 @@ export const futureModules = [
   },
   {
     title: "Appointments",
-    status: "Next module",
-    description: "Store pediatrician visits, school deadlines, forms, and prep questions.",
-    locked: true
+    status: "Module active",
+    description: "Store visits, school deadlines, forms, prep questions, and follow-up actions.",
+    locked: false
   },
   {
     title: "Emergency Card",
-    status: "Roadmap",
+    status: "Next module",
     description: "One-tap allergies, doctor details, insurance, and trusted contacts.",
     locked: true
   },
