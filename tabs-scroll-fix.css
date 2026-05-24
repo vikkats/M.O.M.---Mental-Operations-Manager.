@@ -1,0 +1,53 @@
+.tabs-wrap {
+  isolation: isolate;
+}
+
+.tabs-wrap::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 0;
+  bottom: 16px;
+  width: 72px;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(90deg, rgba(247, 239, 233, 0), rgba(247, 239, 233, 0.94));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tabs {
+  align-items: center;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 12px 12px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(43, 33, 30, 0.34) rgba(255, 249, 245, 0.78);
+}
+
+.tabs::-webkit-scrollbar {
+  display: block;
+  height: 8px;
+}
+
+.tabs::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 249, 245, 0.78);
+}
+
+.tabs::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(43, 33, 30, 0.34);
+}
+
+.tab-button {
+  scroll-snap-align: start;
+}
+
+@media (max-width: 640px) {
+  .tabs-wrap::after {
+    right: 11px;
+  }
+}
