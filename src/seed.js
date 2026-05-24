@@ -3,6 +3,7 @@ export const STORAGE_KEY = "mom-dose-and-go-v1";
 export const tabs = [
   { id: "dashboard", label: "Command Center" },
   { id: "calculate", label: "Dose & Go" },
+  { id: "fever", label: "Fever Log" },
   { id: "profiles", label: "Profiles" },
   { id: "medications", label: "Meds" },
   { id: "history", label: "History" },
@@ -14,6 +15,7 @@ export const demoState = {
   selectedChildId: "child-demo-mia",
   selectedMedicationId: "med-demo-a",
   historyFilterChildId: "all",
+  feverFilterChildId: "all",
   confirmations: {
     weight: false,
     formula: false,
@@ -77,6 +79,22 @@ export const demoState = {
       takenAt: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(),
       note: "Seed log to show the history timeline."
     }
+  ],
+  feverLogs: [
+    {
+      id: "fever-demo-1",
+      childId: "child-demo-mia",
+      childName: "Mia",
+      temperature: 38.2,
+      unit: "C",
+      method: "Ear",
+      symptoms: ["Cough", "Low energy"],
+      fluids: "Drank water twice after lunch.",
+      appetite: "Low appetite",
+      energy: "Tired",
+      note: "Demo fever entry to show the symptom timeline.",
+      loggedAt: new Date(Date.now() - 1000 * 60 * 90).toISOString()
+    }
   ]
 };
 
@@ -89,13 +107,13 @@ export const futureModules = [
   },
   {
     title: "Fever Log",
-    status: "Next module",
-    description: "Track temperature, symptoms, fluids, and notes before a doctor call.",
-    locked: true
+    status: "Module active",
+    description: "Track temperature, symptoms, fluids, energy, appetite, and notes before a doctor call.",
+    locked: false
   },
   {
     title: "Appointments",
-    status: "Roadmap",
+    status: "Next module",
     description: "Store pediatrician visits, school deadlines, forms, and prep questions.",
     locked: true
   },
